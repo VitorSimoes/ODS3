@@ -1,0 +1,121 @@
+pragma solidity >=0.4.22;
+pragma experimental ABIEncoderV2;
+
+contract RBCContract {
+    
+    enum Status { Criado, Bloqueado, Liberado, Inativo }
+    uint productcode =0;
+    uint orderId = 0 ;
+
+    struct Product {
+
+        string name;
+        string tipe;
+        uint price;
+        address owner;
+        address farmer;
+        string plantingLocation;
+        string plantingMethod;
+        string platingDate;
+        string harvestDate;
+        Status status;
+    }
+    struct Order {
+        uint id;
+        uint productId;
+        address buyer;
+        bool delivered;
+    }
+
+     /* EVENTOS */
+    event alert();
+    // error OrderNotFound(uint id);
+    // error ProductNotFound(uint id);
+
+
+    Product[] produtosarray;
+    Order[] orders;
+
+
+    function inserirProduto(string memory  _name, string memory _type, uint  _price,string memory _plantingLocation,string memory _plantingMethod,string memory _platingDate, string memory _harvestDate) public {
+
+        Product memory product;
+        product.name = _name;
+        product.tipe = _type;
+        product.price = _price;
+        product.owner = msg.sender;
+        product.farmer = msg.sender;
+        product.plantingLocation = _plantingLocation;
+        product.plantingMethod = _plantingMethod;
+        product.platingDate = _platingDate;
+        product.harvestDate = _harvestDate;
+        product.status = Status.Criado;
+        produtosarray.push(product);
+
+        emit alert();
+    }
+
+    function getProduct(uint productId) public view returns(Product memory product) {
+         return produtosarray[productId];
+
+    }
+
+    function getCasos() public view returns(Product[] memory) {
+        return produtosarray;
+       }
+
+
+    function updateStatusProduct(uint256 id, Status status) public {
+        Product storage product = produtosarray[id];
+        product.status =status;
+    }
+
+    function sendOrder(uint productId) public payable {
+        Product memory product = getProduct(productId);
+        updateStatusProduct(productId,Status.Bloqueado);
+        require(product.price == msg.value);
+        storageOrder(productId, msg.sender, false);
+        emit alert();
+    }
+
+    function delivery(uint orderId) public {
+        Order memory order = orders[uint(orderId)];
+        Product memory product = produtosarray[uint(order.productId)];
+        require(msg.sender == product.owner);
+        updateStatusProduct(order.productId,Status.Liberado);
+        setOrderDelivered(true, uint(orderId));
+        setProductOwner(order.buyer, uint(order.productId));
+        payable(product.owner).transfer(product.price);
+    }
+    
+     function setProductOwner(address newOwner, uint index) private {
+        produtosarray[index].owner = newOwner;
+    }
+    
+    function storageOrder(uint productId, address buyer, bool delivered) public {
+        Order memory order = Order(
+            orderId,
+            productId,
+            buyer,
+            delivered
+        );
+        orders.push(order);
+        orderId++;
+    }
+    
+    function setOrderDelivered(bool delivered, uint index) private {
+        orders[index].delivered = delivered;
+    }
+     function getOrders() public view returns(Order[] memory){
+        return orders;
+    }
+    
+    function getOrder(uint orderId) public view returns(Order memory order) {
+        for (uint index = 0; index < orders.length; index++){
+            if (orders[index].id == orderId) {
+                return orders[index];
+            }
+        }
+    }
+       
+}     
