@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3e4f669e-bf14-42f9-84f9-b6257a920529" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/buyed.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ods/src/Cadastro.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ods/src/components/header.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ods/src/components/loading.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ods/src/config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ods/src/contexts/getproductscontext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../contracts/aula040621.sol" beforeDir="false" afterPath="$PROJECT_DIR$/../contracts/aula040621.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consulta.html" beforeDir="false" afterPath="$PROJECT_DIR$/consulta.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/35.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/Double Ring-1s-200px.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/truffle-contract.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/web3.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sobre.html" beforeDir="false" afterPath="$PROJECT_DIR$/sobre.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1w9C3NDpeZt3eStVR8m3GAiJzRg" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3e4f669e-bf14-42f9-84f9-b6257a920529" name="Default Changelist" comment="" />
+      <created>1627861218267</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1627861218267</updated>
+      <workItem from="1627861219482" duration="6439000" />
+      <workItem from="1627869628962" duration="19222000" />
+      <workItem from="1627929444267" duration="3930000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

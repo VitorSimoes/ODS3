@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Market</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script src="js/web3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+</head>
+
+<body>
+
+<div class="main">
+    <article>
+        <header>
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html" class="nounderline"> Cadastro </a></li>
+                    <li><a href="consulta.html" class="nounderline"> Consulta </a></li>
+                    <li><a href="sobre.html" class="nounderline"> Ordens </a></li>
+                </ul>
+            </div>
+        </header>
+    </article>
+
+
+    <div class="content">
+
+        <div class="content-inner">
+            <div class="header">Lista de venda.</div>
+
+            <table class="table" id="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">L.Plantação</th>
+                    <th scope="col">L.Método</th>
+                    <th scope="col">Data Plantação</th>
+                    <th scope="col">Data Colheita</th>
+                    <th scope="col">Ações</th>
+                </tr>
+                </thead>
+                <tbody id="aqui">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    rbc.methods.getCasos().call()
+        .then((result) => {
+            result.forEach((element, index) => {
+                console.log(element)
+                if (element.status === '0' && (element.owner === element.farmer)) {
+                    $('#aqui').append(`<tr><th>${index + 1}</th>
+									<td>${element.name}</td>
+									<td>${element.tipe}</td>
+									<td>${element.price}</td>
+									<td>${element.plantingLocation}</td>
+									<td>${element.plantingMethod}</td>
+									<td>${element.platingDate}</td>
+									<td>${element.harvestDate}</td>
+									<td><button type="submit" id="button1"  value="${[parseInt(index) + '|' + parseInt(element.price, 10) + '|' + element.owner]}" onclick="buy(this.value)" class="btn btn-primary" style="width:auto">Comprar</button></td>
+									</tr> `);
+                }
+            });
+
+        })
+
+    function buy(algo) {
+        var data = algo.split('|');
+        if (data[2] === web3.eth.defaultAccount) {
+            alert('Você é o produtor desse produto, não pode comprar')
+        } else {
+            rbc.methods.sendOrder(parseInt(data[0])).send({
+                from: web3.eth.defaultAccount,
+                value: parseInt(data[1])
+            }).then(
+                (result) => {
+                    alert("foiii")
+                }
+            )
+        }
+
+    }
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Market</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script src="js/web3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+</head>
+
+<body>
+
+<div class="main">
+    <article>
+        <header>
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html" class="nounderline"> Cadastro </a></li>
+                    <li><a href="consulta.html" class="nounderline"> Consulta </a></li>
+                    <li><a href="sobre.html" class="nounderline"> Ordens </a></li>
+                    <li><a href="buyed.html" class="nounderline"> Compras </a></li>
+                </ul>
+            </div>
+        </header>
+    </article>
+
+
+    <div class="content">
+
+        <div class="content-inner">
+            <div class="header">Lista de Ordens.</div>
+
+            <table class="table" id="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ProdutoID</th>
+                    <th scope="col">Ações</th>
+                </tr>
+                </thead>
+                <tbody id="aqui">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    rbc.methods.getOrders().call()
+        .then((result) => {
+            result.forEach((element, index) => {
+                if (element.delivered === false) {
+                    rbc.methods.getProduct(element.productId).call().then((element2) => {
+                        if (element2.owner === web3.eth.defaultAccount) {
+                            $('#aqui').append(`<tr><th>${element.id}</th>
+									<td>${element.productId}</td>
+									<td><button type="submit" id="button1"  value="${parseInt(element.productId)}" onclick="buy(this.value)" class="btn btn-primary" style="width:auto">Entregar</button></td>
+									</tr> `);
+
+                        }
+                    });
+                }
+            });
+
+        })
+
+    function buy(idproduto) {
+        rbc.methods.delivery(parseInt(idproduto)).send({from: web3.eth.defaultAccount}).then(
+            (result) => {
+                alert("voltou")
+            }
+        )
+    }
+</script>
+</body>
+
+</html>

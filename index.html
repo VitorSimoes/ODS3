@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>PRODUTOR</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script src="js/web3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+</head>
+
+<body>
+
+<div class="main">
+    <article>
+        <header>
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html" class="nounderline"> Cadastro </a></li>
+                    <li><a href="consulta.html" class="nounderline"> Consulta </a></li>
+                    <li><a href="sobre.html" class="nounderline"> Ordens </a></li>
+                </ul>
+            </div>
+        </header>
+    </article>
+
+    <div class="header mb-3">Cadastro de Produto.</div>
+    <div class="container">
+        <div class="form-group row">
+            <label class="col-sm-2">Nome</label>
+            <input type="text" class="form-control col-sm-10" id="name" aria-describedby="Nome" placeholder="Nome">
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Tipo do alimento</label>
+            <select id="selector" name="selector" class="form-control col-sm-10" style="margin-bottom: 16px">
+                <option value="verdura">Verdura</option>
+                <option value="fruta">Fruta</option>
+            </select>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Preço</label>
+            <input type="number" class="form-control col-sm-10" id="preco" aria-describedby="Preco" placeholder="Preço">
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Localização da Plantagem</label>
+            <input type="text" class="form-control col-sm-10" id="plantingLocation" aria-describedby="plantingLocation"
+                   placeholder="Localização">
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Forma de Plantagem</label>
+            <input type="text" class="form-control col-sm-10" id="plantingmethod" aria-describedby="plantingmethod"
+                   placeholder="Plantagem">
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Data de Plantagem</label>
+            <input type="date" class="form-control col-sm-10" id="plantingDate" aria-describedby="plantingDate"
+                   placeholder="Data de Plantagem">
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Data da Colheita</label>
+            <input type="date" class="form-control col-sm-10" id="datehavest" aria-describedby="datehavest"
+                   placeholder="Data de Colheita">
+        </div>
+        <button type="submit" id="button1" class="btn btn-primary">Cadastrar</button>
+    </div>
+
+
+</div>
+
+
+<script>
+    //Uso o Id(#) dos botões e campos para referenciar os valores inseridos
+    $("#button1").click(function () {
+        $("#loader").show();
+        rbc.methods.inserirProduto($("#name").val(), $('select[name=selector] option').filter(':selected').val(), $("#preco").val(), $("#plantingLocation").val(), $("#plantingmethod").val(), $("#plantingDate").val(), $("#datehavest").val()).send({from: web3.eth.defaultAccount})
+            .then(() => {
+                console.log("ok");
+                alert("cadastro efetuado com sucesso");
+                $("#loader").hide();
+            }).catch((error) => {
+            console.error(error);
+            $("#loader").hide();
+        });
+    })
+    ;
+
+
+</script>
+
+
+</body>
+
+</html>
